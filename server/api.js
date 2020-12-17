@@ -18,7 +18,7 @@ const fetchClientAccessToken = async () => {
   const scopes = [
     'authorization:grant,user:read,user:create', // needed for creating permanent users
     'credentials:read', // needed for fetching user credentials
-    'payment:read', // needed for fetching payment request transfers
+    'payment:read,payment:write,transfer:execute,transfer:read,link-session:read,link-session:write', // needed for fetching payment request transfers
   ].join(',');
 
   const clientAccessTokenResponse = await fetch(`${API_URL}/api/v1/oauth/token`, {
@@ -55,7 +55,7 @@ const fetchAuthorizationCode = async (userId, clientAccessToken) => {
   const scopes = [
     'providers:read,user:read,authorization:read', // base tink link scopes
     'credentials:read,credentials:refresh,credentials:write', // needed to enable add/refresh/authenticate credentials
-    'transfer:read,transfer:execute', // needed for executing payment requests - creating a transfers
+    'payment:read,payment:write,transfer:execute,transfer:read,link-session:read,link-session:write', // needed for executing payment requests - creating a transfers
   ].join(',');
   const idHint = 'John Doe';
 
